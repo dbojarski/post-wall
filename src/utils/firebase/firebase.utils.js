@@ -5,6 +5,7 @@ import {
   signOut as firebaseSignOut,
   GoogleAuthProvider,
 } from 'firebase/auth';
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -16,6 +17,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
 
@@ -23,3 +25,9 @@ export const signInWithGooglePopup = async () =>
   await signInWithPopup(auth, googleProvider);
 
 export const signOut = async () => await firebaseSignOut(auth);
+
+export const getPosts = async () => {
+  const posts = await getDocs(collection(db, 'posts'));
+
+  return posts.docs.map((post) => post.data());
+};
