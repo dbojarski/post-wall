@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import {
   HeaderWrapper,
   HeaderLink,
@@ -5,9 +7,11 @@ import {
   HeaderLogo,
   HeaderContainer,
 } from './Header.styles';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../state/user/user.selectors';
 
 export function Header() {
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
 
   const navigateToHome = () => {
@@ -20,7 +24,9 @@ export function Header() {
         <HeaderLogo onClick={navigateToHome} />
 
         <HeaderLinks>
-          <HeaderLink to='/authentication'>Sign in</HeaderLink>
+          <HeaderLink to='/authentication'>
+            {user ? 'Sign out' : 'Sign in'}
+          </HeaderLink>
         </HeaderLinks>
       </HeaderContainer>
     </HeaderWrapper>
