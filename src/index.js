@@ -1,25 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './App';
+import initStore from './state/store';
 import reportWebVitals from './reportWebVitals';
 import { Authentication } from './pages/Authentication/Authentication';
-import { Provider } from 'react-redux';
-import store from './state/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const { store, persistor } = initStore();
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<App />}>
-            <Route path='/authentication' element={<Authentication />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<App />}>
+              <Route path='/authentication' element={<Authentication />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
