@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/img/logo.svg';
-import { Container } from '../../assets/styles/Common.styles';
+import { Wrapper } from '../../assets/styles/Common.styles';
 
 export const HeaderWrapper = styled.div`
   background-color: #2f2f2f;
+  height: 85px;
+  overflow: hidden;
 `;
 
-export const HeaderContainer = styled(Container)`
+export const HeaderContainer = styled(Wrapper)`
   display: flex;
   flex-direction: row;
   align-items: center;

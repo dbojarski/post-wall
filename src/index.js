@@ -9,6 +9,7 @@ import App from './App';
 import initStore from './state/store';
 import reportWebVitals from './reportWebVitals';
 import { Authentication } from './pages/authentication/Authentication';
+import { PostsList } from './components/posts-list/PostsList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const { store, persistor } = initStore();
@@ -20,6 +21,7 @@ root.render(
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<App />}>
+              <Route path='/' element={<PostsList />} />
               <Route path='/authentication' element={<Authentication />} />
             </Route>
           </Routes>

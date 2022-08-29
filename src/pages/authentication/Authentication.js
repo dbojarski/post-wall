@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Container } from '../../assets/styles/Common.styles';
+import { Wrapper } from '../../assets/styles/Common.styles';
 import { selectUser } from '../../state/user/user.selectors';
 import { setUser } from '../../state/user/user.reducer';
 import { signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
@@ -25,9 +25,9 @@ export function Authentication() {
   }, [user]);
 
   return (
-    <Container>
+    <Wrapper>
       <h2>Sign in with Google </h2>
       <Button onClick={authenticateWithGoogle}>Sign in with Google</Button>
-    </Container>
+    </Wrapper>
   );
 }
