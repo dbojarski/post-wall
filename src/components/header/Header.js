@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import {
   HeaderWrapper,
@@ -7,8 +8,8 @@ import {
   HeaderLogo,
   HeaderContainer,
 } from './Header.styles';
-import { useSelector } from 'react-redux';
 import { selectUser } from '../../state/user/user.selectors';
+import { UserPill } from '../user-pill/UserPill';
 
 export function Header() {
   const user = useSelector(selectUser);
@@ -24,9 +25,11 @@ export function Header() {
         <HeaderLogo onClick={navigateToHome} />
 
         <HeaderLinks>
-          <HeaderLink to='/authentication'>
-            {user ? 'Sign out' : 'Sign in'}
-          </HeaderLink>
+          {user ? (
+            <UserPill />
+          ) : (
+            <HeaderLink to='/authentication'>Sign in</HeaderLink>
+          )}
         </HeaderLinks>
       </HeaderContainer>
     </HeaderWrapper>

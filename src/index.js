@@ -8,7 +8,7 @@ import './index.css';
 import App from './App';
 import initStore from './state/store';
 import reportWebVitals from './reportWebVitals';
-import { Authentication } from './pages/Authentication/Authentication';
+import { Authentication } from './pages/authentication/Authentication';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const { store, persistor } = initStore();
