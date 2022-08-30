@@ -6,7 +6,6 @@ import { Wrapper } from '../../assets/styles/Common.styles';
 export const HeaderWrapper = styled.div`
   background-color: #2f2f2f;
   height: 85px;
-  overflow: hidden;
 `;
 
 export const HeaderContainer = styled(Wrapper)`
@@ -14,6 +13,7 @@ export const HeaderContainer = styled(Wrapper)`
   flex-direction: row;
   align-items: center;
   padding: 10px;
+  height: 100%;
 `;
 
 export const HeaderLinks = styled.ul`
@@ -33,4 +33,10 @@ export const HeaderLink = styled(Link)`
 export const HeaderLogo = styled(Logo)`
   height: 30px;
   cursor: pointer;
+`;
+
+export const HeaderLoggedArea = styled.div`
+  margin-left: auto;
+  display: flex;
+  gap: 25px;
 `;

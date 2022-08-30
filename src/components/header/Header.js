@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   HeaderWrapper,
@@ -7,9 +7,27 @@ import {
   HeaderLinks,
   HeaderLogo,
   HeaderContainer,
+  HeaderLoggedArea,
 } from './Header.styles';
 import { selectUser } from '../../state/user/user.selectors';
 import { UserPill } from '../user-pill/UserPill';
+import { Button, BUTTON_TYPES } from '../button/Button';
+import { setAddPostVisibility } from '../../state/posts/posts.reducer';
+
+const LoggedUserArea = () => {
+  const dispatch = useDispatch();
+
+  const onAddPost = () => dispatch(setAddPostVisibility(true));
+
+  return (
+    <HeaderLoggedArea>
+      <UserPill />
+      <Button type={BUTTON_TYPES.ACCENT} onClick={onAddPost}>
+        Add post
+      </Button>
+    </HeaderLoggedArea>
+  );
+};
 
 export function Header() {
   const user = useSelector(selectUser);
@@ -24,13 +42,13 @@ export function Header() {
       <HeaderContainer>
         <HeaderLogo onClick={navigateToHome} />
 
-        <HeaderLinks>
-          {user ? (
-            <UserPill />
-          ) : (
+        {user ? (
+          <LoggedUserArea />
+        ) : (
+          <HeaderLinks>
             <HeaderLink to='/authentication'>Sign in</HeaderLink>
-          )}
-        </HeaderLinks>
+          </HeaderLinks>
+        )}
       </HeaderContainer>
     </HeaderWrapper>
   );

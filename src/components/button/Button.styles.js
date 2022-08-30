@@ -2,15 +2,34 @@ import styled from 'styled-components';
 
 export const CustomButton = styled.button`
   background: transparent;
-  border: 1px solid #fff;
+  border: 1px solid cadetblue;
   border-radius: 4px;
   padding: 10px 15px;
   text-transform: uppercase;
-  color: #fff;
+  color: cadetblue;
   cursor: pointer;
 
   &:hover {
-    background-color: #fff;
-    color: #000;
+    border-color: #fff;
+    color: #fff;
+  }
+`;
+
+export const AccentButton = styled(CustomButton)`
+  background-color: cadetblue;
+  color: #fff;
+
+  &:hover {
+    border-color: cadetblue;
+    background-color: #6cb2b4ff;
+  }
+`;
+
+export const GhostButton = styled(CustomButton)`
+  border: 0;
+
+  &:hover {
+    background-color: transparent;
+    color: #fff;
   }
 `;
