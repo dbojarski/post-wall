@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import {
   PostAuthorPicture,
   PostContainer,
@@ -5,7 +7,7 @@ import {
   PostHeader,
 } from './Post.styles';
 
-export function Post({ post }) {
+export const Post = memo(function Post({ post }) {
   return (
     <PostContainer>
       <PostHeader>
@@ -15,4 +17,4 @@ export function Post({ post }) {
       <PostContent>{post.content}</PostContent>
     </PostContainer>
   );
-}
+});

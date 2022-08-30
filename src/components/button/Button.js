@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { AccentButton, CustomButton, GhostButton } from './Button.styles';
 
 export const BUTTON_TYPES = {
@@ -6,7 +8,7 @@ export const BUTTON_TYPES = {
   GHOST: 'ghost',
 };
 
-export function Button(props) {
+export const Button = memo(function Button(props) {
   const ButtonComponent =
     {
       [BUTTON_TYPES.DEFAULT]: CustomButton,
@@ -15,4 +17,4 @@ export function Button(props) {
     }[props.type] || CustomButton;
 
   return <ButtonComponent {...props}>{props.children}</ButtonComponent>;
-}
+});
