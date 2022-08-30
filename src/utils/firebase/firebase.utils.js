@@ -29,5 +29,5 @@ export const signOut = async () => await firebaseSignOut(auth);
 export const getPosts = async () => {
   const posts = await getDocs(collection(db, 'posts'));
 
-  return posts.docs.map((post) => post.data());
+  return posts.docs.map((post) => ({ id: post.id, ...post.data() }));
 };
