@@ -11,6 +11,7 @@ import {
   TextAreaContainer,
   UserPhoto,
 } from './AddPost.styles';
+import { addPost } from '../../utils/firebase/firebase.utils';
 
 export function AddPost() {
   const user = useSelector(selectUser);
@@ -24,8 +25,18 @@ export function AddPost() {
   });
 
   const cancelAddingPost = () => dispatch(setAddPostVisibility(false));
-  const createPost = (data) => {
-    /* TODO */
+  const createPost = async (data) => {
+    const payload = {
+      author: {
+        photoURL: user.photoURL,
+        name: user.displayName,
+      },
+      date: new Date(),
+      content: data.content,
+    };
+
+    await addPost(payload);
+    dispatch(setAddPostVisibility(false));
   };
 
   return (
@@ -46,9 +57,7 @@ export function AddPost() {
         >
           Cancel
         </Button>
-        <Button disabled={!isValid} onClick={createPost}>
-          Send
-        </Button>
+        <Button disabled={!isValid}>Send</Button>
       </ActionsContainer>
     </AddPostForm>
   );

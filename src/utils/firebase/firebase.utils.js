@@ -5,7 +5,7 @@ import {
   signOut as firebaseSignOut,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -30,4 +30,8 @@ export const getPosts = async () => {
   const posts = await getDocs(collection(db, 'posts'));
 
   return posts.docs.map((post) => ({ id: post.id, ...post.data() }));
+};
+
+export const addPost = async (payload) => {
+  await addDoc(collection(db, 'posts'), payload);
 };
