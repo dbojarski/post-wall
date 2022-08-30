@@ -13,6 +13,16 @@ export const CustomButton = styled.button`
     border-color: #fff;
     color: #fff;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      border: 1px solid cadetblue;
+      color: cadetblue;
+    }
+  }
 `;
 
 export const AccentButton = styled(CustomButton)`

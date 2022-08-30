@@ -1,10 +1,13 @@
-import { Button, BUTTON_TYPES } from '../button/Button';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+
+import { Button, BUTTON_TYPES } from '../button/Button';
 import { setAddPostVisibility } from '../../state/posts/posts.reducer';
 import { selectUser } from '../../state/user/user.selectors';
 import {
   ActionsContainer,
-  AddPostContainer,
+  AddPostForm,
+  PostContent,
   TextAreaContainer,
   UserPhoto,
 } from './AddPost.styles';
@@ -12,25 +15,41 @@ import {
 export function AddPost() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm({
+    mode: 'onChange',
+  });
 
   const cancelAddingPost = () => dispatch(setAddPostVisibility(false));
-  const createPost = () => {
+  const createPost = (data) => {
     /* TODO */
   };
 
   return (
-    <AddPostContainer>
+    <AddPostForm onSubmit={handleSubmit(createPost)}>
       <TextAreaContainer>
         <UserPhoto src={user.photoURL} />
-        <textarea rows={4} style={{ width: '100%', resize: 'vertical' }} />
+        <PostContent
+          placeholder='Insert your message here'
+          {...register('content', { required: 'Post content is required' })}
+        />
       </TextAreaContainer>
 
       <ActionsContainer>
-        <Button type={BUTTON_TYPES.GHOST} onClick={cancelAddingPost}>
+        <Button
+          variant={BUTTON_TYPES.GHOST}
+          type='button'
+          onClick={cancelAddingPost}
+        >
           Cancel
         </Button>
-        <Button onClick={createPost}>Send</Button>
+        <Button disabled={!isValid} onClick={createPost}>
+          Send
+        </Button>
       </ActionsContainer>
-    </AddPostContainer>
+    </AddPostForm>
   );
 }

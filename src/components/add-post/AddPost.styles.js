@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AddPostContainer = styled.div`
+export const AddPostForm = styled.form`
   background-color: #2f2f2f;
   padding: 10px;
   border-radius: 4px;
@@ -32,4 +32,9 @@ export const UserPhoto = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 100%;
+`;
+
+export const PostContent = styled.textarea`
+  width: 100%;
+  resize: vertical;
 `;

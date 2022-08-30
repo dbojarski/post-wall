@@ -22,7 +22,7 @@ const LoggedUserArea = () => {
   return (
     <HeaderLoggedArea>
       <UserPill />
-      <Button type={BUTTON_TYPES.ACCENT} onClick={onAddPost}>
+      <Button variant={BUTTON_TYPES.ACCENT} onClick={onAddPost}>
         Add post
       </Button>
     </HeaderLoggedArea>

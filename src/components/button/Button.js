@@ -14,7 +14,7 @@ export const Button = memo(function Button(props) {
       [BUTTON_TYPES.DEFAULT]: CustomButton,
       [BUTTON_TYPES.ACCENT]: AccentButton,
       [BUTTON_TYPES.GHOST]: GhostButton,
-    }[props.type] || CustomButton;
+    }[props.variant] || CustomButton;
 
   return <ButtonComponent {...props}>{props.children}</ButtonComponent>;
 });

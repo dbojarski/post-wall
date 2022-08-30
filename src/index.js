@@ -15,20 +15,20 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const { store, persistor } = initStore();
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<App />}>
-              <Route path='/' element={<Feed />} />
-              <Route path='/authentication' element={<Authentication />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />}>
+            <Route path='/' element={<Feed />} />
+            <Route path='/authentication' element={<Authentication />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
