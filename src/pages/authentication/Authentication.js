@@ -4,19 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { Wrapper } from '../../assets/styles/Common.styles';
 import { selectUser } from '../../state/user/user.selectors';
-import { setUser } from '../../state/user/user.reducer';
-import { signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
+import { signInStart } from '../../state/user/user.reducer';
 import { Button } from '../../components/button/Button';
 
 export function Authentication() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
-  const authenticateWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-
-    dispatch(setUser(user));
-  };
+  const authenticateWithGoogle = () => dispatch(signInStart());
 
   useEffect(() => {
     if (user) {

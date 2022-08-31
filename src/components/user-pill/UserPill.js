@@ -8,19 +8,13 @@ import {
   UserName,
   UserPillContainer,
 } from './UserPill.styles';
-import { signOut } from '../../utils/firebase/firebase.utils';
-import { setUser } from '../../state/user/user.reducer';
+import { signOutStart } from '../../state/user/user.reducer';
 
 export function UserPill() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  const onSignOut = async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    await signOut();
-    dispatch(setUser(null));
-  };
+  const onSignOut = () => dispatch(signOutStart());
 
   return (
     <UserPillContainer>
