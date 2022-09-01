@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
-import { Button, BUTTON_TYPES } from '../button/Button';
+import { Button, ButtonType } from '../button/Button';
 import { setAddPostVisibility } from '../../state/posts/posts.reducer';
 import { selectUser } from '../../state/user/user.selectors';
 import {
@@ -12,9 +12,10 @@ import {
   UserPhoto,
 } from './AddPost.styles';
 import { addPost } from '../../utils/firebase/firebase.utils';
+import { User } from '../../state/user/user.reducer';
 
 export function AddPost() {
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUser) as User;
   const dispatch = useDispatch();
   const {
     register,
@@ -25,14 +26,14 @@ export function AddPost() {
   });
 
   const cancelAddingPost = () => dispatch(setAddPostVisibility(false));
-  const createPost = async (data) => {
+  const createPost = async ({ content }: { content: string }) => {
     const payload = {
       author: {
         photoURL: user.photoURL,
         name: user.displayName,
       },
       date: new Date(),
-      content: data.content,
+      content,
     };
 
     await addPost(payload);
@@ -51,7 +52,7 @@ export function AddPost() {
 
       <ActionsContainer>
         <Button
-          variant={BUTTON_TYPES.GHOST}
+          variant={ButtonType.ghost}
           type='button'
           onClick={cancelAddingPost}
         >

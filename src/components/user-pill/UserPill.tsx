@@ -8,10 +8,10 @@ import {
   UserName,
   UserPillContainer,
 } from './UserPill.styles';
-import { signOutStart } from '../../state/user/user.reducer';
+import { signOutStart, User } from '../../state/user/user.reducer';
 
 export function UserPill() {
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUser) as User;
   const dispatch = useDispatch();
 
   const onSignOut = () => dispatch(signOutStart());

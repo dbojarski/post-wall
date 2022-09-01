@@ -6,8 +6,12 @@ import {
   PostContent,
   PostHeader,
 } from './Post.styles';
+import { Post as PostType } from '../../state/posts/posts.reducer';
 
-export const Post = memo(function Post({ post }) {
+type PostProps = {
+  post: PostType;
+};
+export const Post = memo(function Post({ post }: PostProps) {
   return (
     <PostContainer>
       <PostHeader>

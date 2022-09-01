@@ -5,7 +5,14 @@ import {
   signOut as firebaseSignOut,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+  QuerySnapshot,
+} from 'firebase/firestore';
+import { Post } from '../../state/posts/posts.reducer';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -26,12 +33,12 @@ export const signInWithGooglePopup = async () =>
 
 export const signOut = async () => await firebaseSignOut(auth);
 
-export const getPosts = async () => {
-  const posts = await getDocs(collection(db, 'posts'));
+export const getPosts = async (): Promise<Post[]> => {
+  const posts = (await getDocs(collection(db, 'posts'))) as QuerySnapshot<Post>;
 
   return posts.docs.map((post) => ({ id: post.id, ...post.data() }));
 };
 
-export const addPost = async (payload) => {
+export const addPost = async (payload: Post) => {
   await addDoc(collection(db, 'posts'), payload);
 };

@@ -11,7 +11,7 @@ import {
 } from './Header.styles';
 import { selectUser } from '../../state/user/user.selectors';
 import { UserPill } from '../user-pill/UserPill';
-import { Button, BUTTON_TYPES } from '../button/Button';
+import { Button, ButtonType } from '../button/Button';
 import { setAddPostVisibility } from '../../state/posts/posts.reducer';
 
 const LoggedUserArea = () => {
@@ -22,7 +22,7 @@ const LoggedUserArea = () => {
   return (
     <HeaderLoggedArea>
       <UserPill />
-      <Button variant={BUTTON_TYPES.ACCENT} onClick={onAddPost}>
+      <Button variant={ButtonType.accent} onClick={onAddPost}>
         Add post
       </Button>
     </HeaderLoggedArea>

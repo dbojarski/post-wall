@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import { HTMLProps, PropsWithChildren } from 'react';
 
-export const CustomButton = styled.button`
+export const CustomButton = styled.button<
+  HTMLProps<HTMLButtonElement> & PropsWithChildren
+>`
   background: transparent;
   border: 1px solid cadetblue;
   border-radius: 4px;
@@ -25,7 +28,9 @@ export const CustomButton = styled.button`
   }
 `;
 
-export const AccentButton = styled(CustomButton)`
+export const AccentButton = styled(CustomButton)<
+  HTMLProps<HTMLButtonElement> & PropsWithChildren
+>`
   background-color: cadetblue;
   color: #fff;
 
@@ -35,7 +40,9 @@ export const AccentButton = styled(CustomButton)`
   }
 `;
 
-export const GhostButton = styled(CustomButton)`
+export const GhostButton = styled(CustomButton)<
+  HTMLProps<HTMLButtonElement> & PropsWithChildren
+>`
   border: 0;
 
   &:hover {

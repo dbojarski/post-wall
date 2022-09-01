@@ -1,6 +1,11 @@
 import { WidgetBody, WidgetContainer, WidgetTitle } from './Widget.styles';
+import { PropsWithChildren } from 'react';
 
-export function Widget({ title, children }) {
+type WidgetProps = PropsWithChildren & {
+  title: string;
+};
+
+export function Widget({ title, children }: WidgetProps) {
   return (
     <WidgetContainer>
       <WidgetTitle>{title}</WidgetTitle>

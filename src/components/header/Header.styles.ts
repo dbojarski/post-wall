@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/img/logo.svg';
+// import { ReactComponent as Logo } from '../../assets/img/logo.svg';
 import { Wrapper } from '../../assets/styles/Common.styles';
 
 export const HeaderWrapper = styled.div`
@@ -30,7 +30,7 @@ export const HeaderLink = styled(Link)`
   }
 `;
 
-export const HeaderLogo = styled(Logo)`
+export const HeaderLogo = styled.div`
   height: 30px;
   cursor: pointer;
 `;
